@@ -190,10 +190,13 @@ p {
 /* Hero Section */
 .hero {
     padding: 120px 0 80px;
-    background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(247, 250, 252, 0.85) 100%),
+        url('hero-background.jpg') center center/cover no-repeat;
     display: flex;
     align-items: center;
     min-height: 80vh;
+    position: relative;
 }
 
 .hero-content {
