@@ -218,7 +218,7 @@ function animateCounters() {
     
     counters.forEach(counter => {
         const target = parseInt(counter.textContent.replace(/\D/g, ''));
-        const increment = target / 100;
+        const increment = target / 50;
         let current = 0;
         
         const timer = setInterval(() => {
