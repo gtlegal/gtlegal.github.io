@@ -157,16 +157,6 @@ async function handleFormSubmit(e) {
 3. Seleccionar rama main
 4. El sitio estará disponible en `https://usuario.github.io/gtlegal.github.io`
 
-### Netlify
-1. Conectar repositorio en Netlify
-2. Deploy automático con cada push
-3. Dominio personalizado disponible
-
-### Vercel
-1. Importar proyecto desde GitHub
-2. Deploy automático configurado
-3. Preview deployments en pull requests
-
 ## 📊 SEO y Performance
 
 ### Meta Tags Incluidos
@@ -194,20 +184,24 @@ async function handleFormSubmit(e) {
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 🤝 Contribuir
+## 🚫 Política de Contribuciones
 
-1. Fork del proyecto
-2. Crear rama para feature (`git checkout -b feature/AmazingFeature`)
-3. Commit cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir Pull Request
+**Este repositorio NO acepta contribuciones externas.**
 
-## 📞 Contacto
+Este es el sitio web oficial de GT Legal Solutions y está mantenido exclusivamente por nuestro equipo interno. No se aceptan:
 
-**GT Legal Solutions**
-- 📧 Email: info@gtlegalsolutions.com
-- 📱 Teléfono: +502 2234-5678
-- 📍 Dirección: Av. Reforma 123, Ciudad de Guatemala
+- ❌ Pull requests
+- ❌ Issues o reportes de bugs
+- ❌ Feature requests
+- ❌ Forks para modificaciones
+
+### 📞 Contacto
+
+Si necesitas contactarnos por algún asunto relacionado con nuestros servicios legales:
+
+- **Email**: solutionsgtlegal@gmail.com
+- **Teléfono**: +57 323 221 1951
+- **Dirección**: Cl. 12 #7-65, Bogotá, Colombia
 
 ---
 
