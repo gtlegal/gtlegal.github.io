@@ -100,6 +100,11 @@ if (contactForm) {
 async function handleFormSubmit(e) {
     e.preventDefault();
     
+    // Validate form before submission
+    if (!validateForm(contactForm)) {
+        return;
+    }
+    
     const formData = new FormData(contactForm);
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
@@ -109,8 +114,8 @@ async function handleFormSubmit(e) {
     submitButton.disabled = true;
     
     try {
-        // Simulate form submission (replace with actual endpoint)
-        await simulateFormSubmission(formData);
+        // Send to Google Apps Script
+        await sendToGoogleSheets(formData);
         
         // Show success message
         showNotification('¡Gracias por tu consulta! Te contactaremos pronto.', 'success');
@@ -126,18 +131,24 @@ async function handleFormSubmit(e) {
     }
 }
 
-// Simulate form submission (replace with actual API call)
-function simulateFormSubmission(formData) {
+// Send form data to Google Apps Script
+function sendToGoogleSheets(formData) {
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzJNndcvTPbO2ZmcQw6HCyT29Or3xCfE0guos_XlFFzHST5-UiqTNnpyY3zkTF1lLr/exec';
+    
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulate success/failure
-            const success = Math.random() > 0.1; // 90% success rate
-            if (success) {
-                resolve({ status: 'success' });
-            } else {
-                reject(new Error('Submission failed'));
-            }
-        }, 2000);
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors' // Required for Google Apps Script
+        })
+        .then(() => {
+            // With no-cors mode, we can't read the response
+            // but if no error is thrown, we assume success
+            resolve({ status: 'success' });
+        })
+        .catch(error => {
+            reject(error);
+        });
     });
 }
 
