@@ -2,6 +2,7 @@
 :root {
     --primary-color: #1a365d;
     --secondary-color: #2c5282;
+    /* --secondary-color: #f6f1da; */
     --accent-color: #3182ce;
     --gold-color: #d69e2e;
     --text-dark: #2d3748;
@@ -139,6 +140,25 @@ p {
     margin: 0;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -192,7 +212,7 @@ p {
     padding: 120px 0 80px;
     background: 
         linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(247, 250, 252, 0.85) 100%),
-        url('hero-background.jpeg') center center/cover no-repeat;
+        url('img/hero-background.jpeg') center center/cover no-repeat;
     display: flex;
     align-items: center;
     min-height: 80vh;
@@ -609,6 +629,14 @@ p {
         display: flex;
     }
     
+    .logo-image {
+        height: 32px;
+    }
+    
+    .logo a {
+        gap: 8px;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -677,6 +705,14 @@ p {
 }
 
 @media (max-width: 480px) {
+    .logo-image {
+        height: 28px;
+    }
+    
+    .logo a {
+        gap: 6px;
+    }
+    
     .hero {
         padding: 100px 0 60px;
     }
