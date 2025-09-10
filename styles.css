@@ -4,7 +4,7 @@
     --secondary-color: #2c5282;
     /* --secondary-color: #f6f1da; */
     --accent-color: #3182ce;
-    --gold-color: #d69e2e;
+    --gold-color: #e8c178;
     --text-dark: #2d3748;
     --text-light: #4a5568;
     --text-muted: #718096;
@@ -27,7 +27,7 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-white);
@@ -41,7 +41,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Book Antiqua', serif;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -93,12 +93,12 @@ p {
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
