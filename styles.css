@@ -1,8 +1,7 @@
 /* Variables CSS */
 :root {
-    --primary-color: #1a365d;
+    --primary-color: #1a365d; /* #002148 */
     --secondary-color: #2c5282;
-    /* --secondary-color: #f6f1da; */
     --accent-color: #3182ce;
     --gold-color: #e8c178;
     --text-dark: #2d3748;
