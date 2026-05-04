@@ -24,8 +24,6 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      
-      - uses: actions/upload-pages-artifact@v4
 
       - run: npm ci
 
@@ -34,7 +32,7 @@ jobs:
         env:
           VITE_SCRIPT_URL: ${{ secrets.VITE_SCRIPT_URL }}
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
