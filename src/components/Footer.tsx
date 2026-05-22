@@ -61,7 +61,7 @@ export default function Footer() {
           <div className="footer-section">
             <h3>Contacto</h3>
             <div className="footer-contact">
-              <p><i className="fas fa-map-marker-alt"></i>Carrera 18 #15 36 - local 182, Bogotá, Colombia</p>
+              {/* <p><i className="fas fa-map-marker-alt"></i>Carrera 18 #15 36 - local 182, Bogotá, Colombia</p> */}
               <p><i className="fas fa-phone"></i>+57 323 221 1950</p>
               <p><i className="fas fa-envelope"></i>info@ghtlegal.com</p>
             </div>
