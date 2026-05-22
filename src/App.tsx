@@ -9,10 +9,18 @@ import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import Notification from './components/Notification'
 
-function App() {
-  const [notification, setNotification] = useState(null)
+type NotificationType = 'success' | 'error' | 'warning' | 'info'
 
-  const showNotification = useCallback((message, type = 'info') => {
+interface NotificationState {
+  message: string
+  type: NotificationType
+  id: number
+}
+
+function App() {
+  const [notification, setNotification] = useState<NotificationState | null>(null)
+
+  const showNotification = useCallback((message: string, type: NotificationType = 'info') => {
     setNotification({ message, type, id: Date.now() })
   }, [])
 

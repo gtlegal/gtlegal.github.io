@@ -1,9 +1,11 @@
-function scrollToSection(e, href) {
+import type { MouseEvent } from 'react'
+
+function scrollToSection(e: MouseEvent<HTMLAnchorElement>, href: string): void {
   e.preventDefault()
   const target = document.querySelector(href)
   if (!target) return
-  const headerHeight = document.querySelector('.header')?.offsetHeight || 80
-  window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
+  const headerHeight = (document.querySelector('.header') as HTMLElement | null)?.offsetHeight || 80
+  window.scrollTo({ top: (target as HTMLElement).offsetTop - headerHeight, behavior: 'smooth' })
 }
 
 export default function Footer() {

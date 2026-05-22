@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react'
 
-const highlights = [
+const highlights: string[] = [
   'Casos exitosos en todas las instancias judiciales',
   'Clientes satisfechos en múltiples sectores',
   'Equipo multidisciplinario de alta especialización',
 ]
 
 export default function Experience() {
-  const contentRef = useRef(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(

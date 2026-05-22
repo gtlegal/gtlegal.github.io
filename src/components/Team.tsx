@@ -1,6 +1,15 @@
 import { useEffect, useRef } from 'react'
 
-const members = [
+interface Member {
+  image: string
+  name: string
+  title: string
+  speciality: string
+  linkedin: string
+  email: string
+}
+
+const members: Member[] = [
   {
     image: '/img/gil.png',
     name: 'David A. Gil Rodríguez',
@@ -28,7 +37,7 @@ const members = [
 ]
 
 export default function Team() {
-  const membersRef = useRef([])
+  const membersRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,7 +64,7 @@ export default function Team() {
             <div
               key={i}
               className="team-member animate-on-scroll"
-              ref={(el) => (membersRef.current[i] = el)}
+              ref={(el) => { membersRef.current[i] = el }}
             >
               <div className="member-image">
                 <img src={member.image} alt={member.name} loading="lazy" />

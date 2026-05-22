@@ -1,13 +1,21 @@
 import { useEffect } from 'react'
 
-const icons = {
+type NotificationType = 'success' | 'error' | 'warning' | 'info'
+
+interface NotificationProps {
+  message: string
+  type?: NotificationType
+  onDismiss: () => void
+}
+
+const icons: Record<NotificationType, string> = {
   success: 'fas fa-check-circle',
   error: 'fas fa-times-circle',
   warning: 'fas fa-exclamation-triangle',
   info: 'fas fa-info-circle',
 }
 
-export default function Notification({ message, type = 'info', onDismiss }) {
+export default function Notification({ message, type = 'info', onDismiss }: NotificationProps) {
   useEffect(() => {
     const timer = setTimeout(onDismiss, 5000)
     return () => clearTimeout(timer)

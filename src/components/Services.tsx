@@ -1,6 +1,13 @@
 import { useEffect, useRef } from 'react'
 
-const services = [
+interface Service {
+  icon: string
+  title: string
+  description: string
+  items: string[]
+}
+
+const services: Service[] = [
   {
     icon: 'fas fa-gavel',
     title: 'División de Derecho Administrativo',
@@ -43,7 +50,7 @@ const services = [
 ]
 
 export default function Services() {
-  const cardsRef = useRef([])
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,7 +77,7 @@ export default function Services() {
             <div
               key={i}
               className="service-card animate-on-scroll"
-              ref={(el) => (cardsRef.current[i] = el)}
+              ref={(el) => { cardsRef.current[i] = el }}
             >
               <div className="service-icon">
                 <i className={service.icon}></i>

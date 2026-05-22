@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(Get-ChildItem -Recurse -File -Include \"*.jsx\",\"*.js\",\"*.json\",\"*.html\",\"*.ts\",\"*.tsx\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(Remove-Item src\\\\main.jsx, src\\\\App.jsx, src\\\\components\\\\Navbar.jsx, src\\\\components\\\\Hero.jsx, src\\\\components\\\\Services.jsx, src\\\\components\\\\Team.jsx, src\\\\components\\\\Experience.jsx, src\\\\components\\\\Contact.jsx, src\\\\components\\\\Footer.jsx, src\\\\components\\\\BackToTop.jsx, src\\\\components\\\\Notification.jsx)"
     ]
   }
 }

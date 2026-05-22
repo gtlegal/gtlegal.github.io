@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react'
+import type { MouseEvent } from 'react'
 
-const navLinks = [
+interface NavLink {
+  href: string
+  label: string
+}
+
+const navLinks: NavLink[] = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#servicios', label: 'Servicios' },
   { href: '#equipo', label: 'Equipo' },
@@ -8,11 +14,11 @@ const navLinks = [
   { href: '#contacto', label: 'Contacto' },
 ]
 
-function scrollToSection(href) {
+function scrollToSection(href: string): void {
   const target = document.querySelector(href)
   if (!target) return
-  const headerHeight = document.querySelector('.header')?.offsetHeight || 80
-  window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
+  const headerHeight = (document.querySelector('.header') as HTMLElement | null)?.offsetHeight || 80
+  window.scrollTo({ top: (target as HTMLElement).offsetTop - headerHeight, behavior: 'smooth' })
 }
 
 export default function Navbar() {
@@ -40,7 +46,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string): void => {
     e.preventDefault()
     setIsOpen(false)
     scrollToSection(href)

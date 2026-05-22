@@ -1,8 +1,23 @@
 import { useState } from 'react'
+import type { ChangeEvent, FocusEvent, FormEvent, ReactNode } from 'react'
 
 const SCRIPT_URL = import.meta.env.VITE_SCRIPT_URL
 
-const initialForm = {
+interface ContactProps {
+  onNotify: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void
+}
+
+interface FormFields {
+  nombre: string
+  email: string
+  telefono: string
+  servicio: string
+  mensaje: string
+}
+
+type FormErrors = Partial<Record<keyof FormFields, string>>
+
+const initialForm: FormFields = {
   nombre: '',
   email: '',
   telefono: '',
@@ -10,19 +25,25 @@ const initialForm = {
   mensaje: '',
 }
 
-const validate = (name, value) => {
+const validate = (name: keyof FormFields, value: string): string => {
   if (name === 'nombre') return value.trim() ? '' : 'El nombre es requerido.'
   if (name === 'email')
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Email inválido.'
   if (name === 'telefono')
-    return !value || /^[\+]?[\d\s\-\(\)]{8,}$/.test(value) ? '' : 'Teléfono inválido.'
+    return !value || /^[+]?[\d\s\-()]{8,}$/.test(value) ? '' : 'Teléfono inválido.'
   if (name === 'servicio') return value ? '' : 'Selecciona un servicio.'
   if (name === 'mensaje')
     return value.trim().length >= 10 ? '' : 'El mensaje debe tener al menos 10 caracteres.'
   return ''
 }
 
-const contactItems = [
+interface ContactItem {
+  icon: string
+  title: string
+  text: ReactNode
+}
+
+const contactItems: ContactItem[] = [
   {
     icon: 'fas fa-map-marker-alt',
     title: 'Dirección',
@@ -37,26 +58,28 @@ const contactItems = [
   },
 ]
 
-export default function Contact({ onNotify }) {
-  const [form, setForm] = useState(initialForm)
-  const [errors, setErrors] = useState({})
+export default function Contact({ onNotify }: ContactProps) {
+  const [form, setForm] = useState<FormFields>(initialForm)
+  const [errors, setErrors] = useState<FormErrors>({})
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: validate(name, value) }))
+    const fieldName = name as keyof FormFields
+    setForm((prev) => ({ ...prev, [fieldName]: value }))
+    if (errors[fieldName]) setErrors((prev) => ({ ...prev, [fieldName]: validate(fieldName, value) }))
   }
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setErrors((prev) => ({ ...prev, [name]: validate(name, value) }))
+    const fieldName = name as keyof FormFields
+    setErrors((prev) => ({ ...prev, [fieldName]: validate(fieldName, value) }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const newErrors = {}
-    Object.keys(form).forEach((k) => {
+    const newErrors: FormErrors = {}
+    ;(Object.keys(form) as (keyof FormFields)[]).forEach((k) => {
       const err = validate(k, form[k])
       if (err) newErrors[k] = err
     })
@@ -68,16 +91,10 @@ export default function Contact({ onNotify }) {
     setIsLoading(true)
     try {
       const formData = new FormData()
-      Object.entries(form).forEach(([key, value]) => {
-        formData.append(key, value)
-      })
+      Object.entries(form).forEach(([key, value]) => formData.append(key, value))
       formData.append('timestamp', new Date().toISOString())
 
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData,
-      })
+      await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
       onNotify('¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.', 'success')
       setForm(initialForm)
       setErrors({})
@@ -167,7 +184,7 @@ export default function Contact({ onNotify }) {
                 <textarea
                   name="mensaje"
                   placeholder="Describe tu consulta legal"
-                  rows="5"
+                  rows={5}
                   value={form.mensaje}
                   onChange={handleChange}
                   onBlur={handleBlur}

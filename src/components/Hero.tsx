@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-function Counter({ target, suffix = '' }) {
+interface CounterProps {
+  target: number
+  suffix?: string
+}
+
+function Counter({ target, suffix = '' }: CounterProps) {
   const [count, setCount] = useState(0)
-  const elRef = useRef(null)
+  const elRef = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
 
   useEffect(() => {
@@ -33,11 +38,11 @@ function Counter({ target, suffix = '' }) {
   return <span ref={elRef}>{count}{suffix}</span>
 }
 
-function scrollToSection(href) {
+function scrollToSection(href: string): void {
   const target = document.querySelector(href)
   if (!target) return
-  const headerHeight = document.querySelector('.header')?.offsetHeight || 80
-  window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
+  const headerHeight = (document.querySelector('.header') as HTMLElement | null)?.offsetHeight || 80
+  window.scrollTo({ top: (target as HTMLElement).offsetTop - headerHeight, behavior: 'smooth' })
 }
 
 export default function Hero() {
