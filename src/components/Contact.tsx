@@ -42,16 +42,19 @@ export default function Contact() {
             ))}
           </div>
 
-          <div className="contact-form">
-            <p>Completa nuestro formulario y nos pondremos en contacto contigo a la brevedad posible.</p>
-            <a
-              href={FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Completar formulario
-            </a>
+          <div>
+            <div className="contact-form">
+              <p>Completa nuestro formulario y nos pondremos en contacto contigo a la brevedad posible.</p>
+              <a
+                href={FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Completar formulario
+              </a>
+            </div>
+            <div></div>
           </div>
         </div>
       </div>

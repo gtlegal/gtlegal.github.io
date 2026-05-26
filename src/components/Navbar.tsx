@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { MouseEvent } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 interface NavLink {
   href: string
@@ -25,13 +26,18 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const isOnHome = location.pathname === '/'
+  const isOnBlog = location.pathname.startsWith('/blog')
 
   useEffect(() => {
-    const sections = navLinks.map((l) => l.href.slice(1))
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100)
 
+      if (!isOnHome) return
+      const sections = navLinks.map((l) => l.href.slice(1))
       const scrollPos = window.scrollY + 200
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i])
@@ -44,12 +50,17 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isOnHome])
 
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string): void => {
     e.preventDefault()
     setIsOpen(false)
-    scrollToSection(href)
+    if (isOnHome) {
+      scrollToSection(href)
+    } else {
+      navigate('/')
+      setTimeout(() => scrollToSection(href), 100)
+    }
   }
 
   return (
@@ -68,13 +79,22 @@ export default function Navbar() {
               <li key={href} className="nav-item">
                 <a
                   href={href}
-                  className={`nav-link${activeSection === href.slice(1) ? ' active' : ''}`}
+                  className={`nav-link${isOnHome && activeSection === href.slice(1) ? ' active' : ''}`}
                   onClick={(e) => handleNavClick(e, href)}
                 >
                   {label}
                 </a>
               </li>
             ))}
+            <li className="nav-item">
+              <Link
+                to="/blog"
+                className={`nav-link${isOnBlog ? ' active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
 
           <button

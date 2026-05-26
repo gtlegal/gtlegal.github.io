@@ -1,210 +1,74 @@
-# GT Legal Solutions - Sitio Web Corporativo
+# GHT Estudio Legal - Sitio Web Corporativo
 
-Un sitio web moderno y profesional para la firma de abogados GT Legal Solutions, desarrollado con HTML5, CSS3 y JavaScript vanilla.
+Sitio web oficial de GHT Estudio Legal, desarrollado con React, TypeScript y Vite.
 
-## 🏛️ Descripción
+## Tecnologías
 
-GT Legal Solutions es una firma de abogados especializada en múltiples áreas del derecho con más de 20 años de experiencia. Este sitio web presenta sus servicios, equipo profesional y facilita el contacto con potenciales clientes.
+- **React 18** + **TypeScript**
+- **Vite** como bundler y servidor de desarrollo
+- **React Router DOM** para navegación
+- **react-markdown** para renderizado de entradas del blog
+- **GitHub Pages** para el despliegue
 
-## 🚀 Características
-
-- **Diseño Responsivo**: Optimizado para dispositivos móviles, tablets y desktop
-- **Navegación Suave**: Scroll suave entre secciones con efectos visuales
-- **Formulario de Contacto**: Sistema de validación en tiempo real
-- **Animaciones**: Efectos de scroll y transiciones suaves
-- **SEO Optimizado**: Meta tags y estructura semántica
-- **Rendimiento**: Código optimizado y carga rápida
-
-## 📁 Estructura del Proyecto
+## Estructura del proyecto
 
 ```
 gtlegal.github.io/
-├── index.html          # Página principal
-├── styles.css          # Estilos CSS
-├── script.js           # Funcionalidades JavaScript
-└── README.md           # Este archivo
+├── public/               # Archivos estáticos (imágenes, favicon, CNAME)
+├── src/
+│   ├── components/       # Componentes reutilizables (Navbar, Hero, Services, etc.)
+│   ├── pages/            # Páginas de React Router (BlogListPage, BlogPostPage)
+│   ├── posts/            # Entradas del blog en TypeScript
+│   ├── App.tsx           # Componente raíz y rutas
+│   ├── App.css           # Estilos globales
+│   └── main.tsx          # Punto de entrada
+├── index.html
+├── vite.config.js
+└── package.json
 ```
 
-## 🎨 Tecnologías Utilizadas
+## Desarrollo local
 
-- **HTML5**: Estructura semántica y accesible
-- **CSS3**: Variables CSS, Grid, Flexbox, animaciones
-- **JavaScript ES6+**: Funcionalidades interactivas
-- **Font Awesome**: Iconografía profesional
-- **Google Fonts**: Tipografías Playfair Display y Open Sans
-
-## 📱 Secciones del Sitio
-
-1. **Header/Navegación**: Menú fijo con navegación suave
-2. **Hero**: Presentación principal con estadísticas destacadas
-3. **Servicios**: Cuatro áreas legales especializadas
-4. **Equipo**: Perfiles de los abogados principales
-5. **Experiencia**: Historia y logros de la firma
-6. **Contacto**: Información de contacto y formulario
-7. **Footer**: Enlaces adicionales y redes sociales
-
-## 🛠️ Instalación y Uso
-
-1. **Clonar o descargar** el repositorio:
 ```bash
-git clone https://github.com/usuario/gtlegal.github.io.git
+npm install
+npm run dev
 ```
 
-2. **Abrir** el archivo `index.html` en un navegador web
+El servidor de desarrollo estará disponible en `http://localhost:5173`.
 
-3. **Para desarrollo local**, usar un servidor local:
+## Otros comandos
+
 ```bash
-# Con Python
-python -m http.server 8000
-
-# Con Node.js (http-server)
-npx http-server
-
-# Con Live Server (VS Code)
-# Instalar extensión Live Server y hacer clic derecho > "Open with Live Server"
+npm run build       # Genera la build de producción en /dist
+npm run preview     # Previsualiza la build de producción localmente
+npm run typecheck   # Verifica tipos sin emitir archivos
 ```
 
-## ⚙️ Funcionalidades JavaScript
+## Despliegue
 
-### Navegación
-- Menú hamburguesa para móviles
-- Scroll suave entre secciones
-- Destacado de sección activa
+El sitio se despliega automáticamente en GitHub Pages desde la rama `main`. Para publicar manualmente:
 
-### Formulario de Contacto
-- Validación en tiempo real
-- Mensajes de error personalizados
-- Sistema de notificaciones
-- Validación de email y teléfono
-
-### Efectos Visuales
-- Animaciones de scroll
-- Contador animado en estadísticas
-- Efectos hover en tarjetas
-- Botón "volver arriba"
-
-### Optimización
-- Lazy loading para imágenes
-- Observadores de intersección
-- Debounce en eventos de scroll
-
-## 🎨 Personalización
-
-### Colores
-Las variables CSS están definidas en `:root` para fácil personalización:
-
-```css
-:root {
-    --primary-color: #1a365d;    /* Azul corporativo */
-    --secondary-color: #2c5282;  /* Azul secundario */
-    --accent-color: #3182ce;     /* Azul de acento */
-    --gold-color: #d69e2e;       /* Dorado */
-    /* ... más variables */
-}
+```bash
+npm run build
+# Copiar el contenido de /dist a la rama gh-pages o usar gh-pages CLI
 ```
 
-### Contenido
-Para personalizar el contenido:
+## Secciones del sitio
 
-1. **Información de la empresa**: Editar textos en `index.html`
-2. **Servicios**: Modificar las tarjetas en la sección `#servicios`
-3. **Equipo**: Actualizar perfiles en la sección `#equipo`
-4. **Contacto**: Cambiar información en la sección `#contacto`
+1. **Hero** — Presentación principal
+2. **Servicios** — Áreas legales especializadas
+3. **Equipo** — Perfiles del equipo profesional
+4. **Experiencia** — Historia y logros de la firma
+5. **Blog** — Artículos y análisis jurídicos
+6. **Contacto** — Información de contacto
+7. **Footer** — Enlaces y redes sociales
 
-### Imágenes
-Reemplazar las imágenes placeholder:
-- Fotos del equipo: `https://via.placeholder.com/300x300`
-- Imagen de experiencia: `https://via.placeholder.com/600x400`
+## Política de contribuciones
 
-## 📱 Responsive Design
+**Este repositorio no acepta contribuciones externas.** Es el sitio oficial de GHT Estudio Legal y está mantenido exclusivamente por el equipo interno.
 
-El sitio está optimizado para:
-- **Desktop**: 1200px+
-- **Tablet**: 768px - 1199px
-- **Mobile**: < 768px
-
-Breakpoints principales:
-```css
-@media (max-width: 768px) { /* Tablet y móvil */ }
-@media (max-width: 480px) { /* Móvil pequeño */ }
-```
-
-## 🔧 Configuración del Formulario
-
-Para activar el formulario de contacto en producción:
-
-1. **Backend**: Configurar un endpoint para recibir los datos
-2. **JavaScript**: Modificar la función `simulateFormSubmission()` en `script.js`
-3. **Validación**: Ajustar reglas de validación según necesidades
-
-Ejemplo de integración con Formspree:
-```javascript
-async function handleFormSubmit(e) {
-    e.preventDefault();
-    const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        body: new FormData(contactForm)
-    });
-    // Manejar respuesta...
-}
-```
-
-## 🚀 Deploy
-
-### GitHub Pages
-1. Subir archivos al repositorio
-2. Ir a Settings > Pages
-3. Seleccionar rama main
-4. El sitio estará disponible en `https://usuario.github.io/gtlegal.github.io`
-
-## 📊 SEO y Performance
-
-### Meta Tags Incluidos
-- Title y description optimizados
-- Viewport para responsive
-- Charset UTF-8
-- Open Graph para redes sociales (expandible)
-
-### Optimizaciones de Performance
-- CSS y JS minificables para producción
-- Imágenes con lazy loading
-- Fuentes web optimizadas
-- Animaciones con `transform` para mejor rendimiento
-
-## 🛡️ Navegadores Compatibles
-
-- **Chrome**: 60+
-- **Firefox**: 60+
-- **Safari**: 12+
-- **Edge**: 79+
-- **iOS Safari**: 12+
-- **Android Chrome**: 60+
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 🚫 Política de Contribuciones
-
-**Este repositorio NO acepta contribuciones externas.**
-
-Este es el sitio web oficial de GT Legal Solutions y está mantenido exclusivamente por nuestro equipo interno. No se aceptan:
-
-- ❌ Pull requests
-- ❌ Issues o reportes de bugs
-- ❌ Feature requests
-- ❌ Forks para modificaciones
-
-### 📞 Contacto
-
-Si necesitas contactarnos por algún asunto relacionado con nuestros servicios legales:
-
-- **Email**: solutionsgtlegal@gmail.com
-- **Teléfono**: +57 323 221 1951
-- **Dirección**: Cl. 12 #7-65, Bogotá, Colombia
+Para consultas sobre servicios legales, contactar directamente a través del sitio web.
 
 ---
 
-⚖️ **GT Legal Solutions** - Experiencia Legal de Confianza
-
-*Desarrollado con ❤️ para brindar la mejor experiencia digital*
+*GHT Estudio Legal — Experiencia Legal de Confianza*

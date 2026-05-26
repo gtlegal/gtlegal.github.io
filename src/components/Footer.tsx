@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-function scrollToSection(e: MouseEvent<HTMLAnchorElement>, href: string): void {
-  e.preventDefault()
+function scrollToSection(href: string): void {
   const target = document.querySelector(href)
   if (!target) return
   const headerHeight = (document.querySelector('.header') as HTMLElement | null)?.offsetHeight || 80
@@ -9,6 +9,20 @@ function scrollToSection(e: MouseEvent<HTMLAnchorElement>, href: string): void {
 }
 
 export default function Footer() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isOnHome = location.pathname === '/'
+
+  function handleSectionClick(e: MouseEvent<HTMLAnchorElement>, href: string): void {
+    e.preventDefault()
+    if (isOnHome) {
+      scrollToSection(href)
+    } else {
+      navigate('/')
+      setTimeout(() => scrollToSection(href), 100)
+    }
+  }
+
   return (
     <footer className="footer">
       <div className="container">
@@ -42,19 +56,20 @@ export default function Footer() {
           <div className="footer-section">
             <h3>Servicios</h3>
             <ul>
-              <li><a href="#servicios" onClick={(e) => scrollToSection(e, '#servicios')}>Derecho Civil</a></li>
-              <li><a href="#servicios" onClick={(e) => scrollToSection(e, '#servicios')}>Derecho Laboral</a></li>
-              <li><a href="#servicios" onClick={(e) => scrollToSection(e, '#servicios')}>Derecho Administrativo</a></li>
+              <li><a href="#servicios" onClick={(e) => handleSectionClick(e, '#servicios')}>Derecho Civil</a></li>
+              <li><a href="#servicios" onClick={(e) => handleSectionClick(e, '#servicios')}>Derecho Laboral</a></li>
+              <li><a href="#servicios" onClick={(e) => handleSectionClick(e, '#servicios')}>Derecho Administrativo</a></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h3>Enlaces</h3>
             <ul>
-              <li><a href="#inicio" onClick={(e) => scrollToSection(e, '#inicio')}>Inicio</a></li>
-              <li><a href="#equipo" onClick={(e) => scrollToSection(e, '#equipo')}>Nuestro Equipo</a></li>
-              <li><a href="#experiencia" onClick={(e) => scrollToSection(e, '#experiencia')}>Experiencia</a></li>
-              <li><a href="#contacto" onClick={(e) => scrollToSection(e, '#contacto')}>Contacto</a></li>
+              <li><a href="#inicio" onClick={(e) => handleSectionClick(e, '#inicio')}>Inicio</a></li>
+              <li><a href="#equipo" onClick={(e) => handleSectionClick(e, '#equipo')}>Nuestro Equipo</a></li>
+              <li><a href="#experiencia" onClick={(e) => handleSectionClick(e, '#experiencia')}>Experiencia</a></li>
+              <li><a href="#contacto" onClick={(e) => handleSectionClick(e, '#contacto')}>Contacto</a></li>
+              <li><Link to="/blog">Blog</Link></li>
             </ul>
           </div>
 
