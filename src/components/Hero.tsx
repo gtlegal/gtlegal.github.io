@@ -73,12 +73,12 @@ export default function Hero() {
       <div className="hero-image">
         <div className="hero-stats">
           <div className="stat">
-            <h3><Counter target={3} /></h3>
+            <h3><Counter target={4} /></h3>
             <p>Años de Experiencia</p>
           </div>
           <div className="stat">
-            <h3><Counter target={95} suffix="%" /></h3>
-            <p>Casos Ganados</p>
+            <h3><Counter target={100} suffix="%" /></h3>
+            <p>Satisfacción del Cliente</p>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function Experience() {
       <div className="container">
         <div className="experience-content animate-on-scroll" ref={contentRef}>
           <div className="experience-text">
-            <h2>3 Años de Excelencia Legal</h2>
+            <h2>4 Años de Excelencia Legal</h2>
             <p>
               Desde el inicio de nuestras labores profesionales en 2022, GHT Estudio Legal se ha venido
               consolidando como una firma de abogados comprometida con la excelencia, brindando servicios
